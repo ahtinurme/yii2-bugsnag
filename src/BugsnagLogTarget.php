@@ -23,7 +23,7 @@ class BugsnagLogTarget extends \yii\log\Target
         {
             foreach ($this->messages as $message)
             {
-                list($message, $level, $category, $timestamp, $trace) = $message; 
+                @list($message, $level, $category, $timestamp, $trace) = $message; 
                 
                 if ($category == BugsnagComponent::IGNORED_LOG_CATEGORY) 
                 {
@@ -69,7 +69,7 @@ class BugsnagLogTarget extends \yii\log\Target
         return array_map(
             function($message) use ($levelMap)
             {
-                list($message, $level, $category, $timestamp) = $message;
+                @list($message, $level, $category, $timestamp) = $message;
 
                 if (!is_string($message)) {
                     $message = print_r($message, true);
